@@ -24,8 +24,6 @@
       </a>
     <h1>Whiteboard For CS Majors</h1>
   <ul class="menu">
-    <li><a href="#/view1">view1</a></li>
-    <li><a href="#/view2">view2</a></li>
     <li><a href="#/tryToAddBoard" title="Add a Board"><div id="button1" label="view3"></div></a></li>
     <li><a href="#/tryToUndoMostRecentEdit" title="Undo an Edit"><div id="button2" label="view4"></div></a></li>
     <li><a href="#/tryToAddComment" title="Add a Comment"><div id="button3" label="view5"></div></a></li>
@@ -52,6 +50,7 @@
                   var canvas = document.getElementById("a");
                 }
               init()
+             var contextTo;
              var context = canvas.getContext("2d");
              var tool;
              var basicTool = "line";
@@ -62,22 +61,71 @@
              context.fillText('getChar(keypress)', event.clientX, event.clientY);
              context.font='bold 25px cursive';
              context.strokeText('getChar(keypress)', event.clientX, event.clientY);
-             canvas.id     = 'imageTemp';
-             canvas.width  = 800;
-             canvas.height = 600; 
+             
 
-             var tools = {};
+             if (window.addEventListener) {
+                  window.addEventListener('load', function () {
 
-             var tool_select = document.getElementById('dtool');
-
-
-              //tool pencil
-
-              tools.pencil = function () {
-              var tool = self;
-              self.started = false;
+                       canvas.id     = 'imageTemp';
+                       canvas.width  = 800;
+                       canvas.height = 600; 
 
 
+                       canvas.addEventListener('mousedown', ev_canvas, false);
+                       canvas.addEventListener('mousemove', ev_canvas, false);
+                       canvas.addEventListener('mouseup',   ev_canvas, false);
+                       }
+
+
+
+                       var tools = {};
+
+                       var tool_select = document.getElementById('dtool');
+
+                       var func = tool[ev.type];
+                       if (func) {
+                            func(ev);
+                           }
+
+                       function canvas_update () {
+                          contextTo.drawImage(canvas,0,0);
+                          context.clearRect(0, 0, canvas.width, canvas.height);
+                       }
+
+                        //tool pencil
+
+                        tools.pencil = function () {
+                        var tool = self;
+                        self.started = false;
+
+                        self.mousedown = function (ev) {
+                            context.beginPath();
+                            context.moveTo(ev._x, ev._y);
+                            self.started = true;
+                        }
+
+                        self.mousemove = function (ev) {
+                            if (tool.started) {
+                                context.lineTo(ev._x, ev._y);
+                                context.stroke();
+                                canvas_update
+                            }
+                        }
+
+                        self.mouseup = function (ev) {
+                            if (tool.started) {
+                                tool.mousemove(ev)
+                                tool.started = false
+                                canvas_update()
+
+                            }
+
+                        }
+
+
+                    }
+
+                };
 
     </script>
 
