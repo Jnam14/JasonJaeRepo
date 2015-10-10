@@ -1,0 +1,17 @@
+
+p {
+	text-align: center;
+	font-family: cursive;
+	font-size: 50px;
+}
+a {
+	text-align: right;
+}
+#button {
+	width: 100px;
+	height: 100px;
+	border-radius: 100%;
+	background-color: blue;
+	position: absolute;
+	right: 300px;
+}
