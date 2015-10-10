@@ -1,4 +1,7 @@
-app.controller('MainController', ['$scope', function($scope) { $scope.title = 'What'; $scope.promo = "Yesyes";}
+angular.module('app').controller('whiteboardController', function($scope) {
+	$scope.title = "Whiteboard App";
 
 
-                                 ]);
+
+
+});

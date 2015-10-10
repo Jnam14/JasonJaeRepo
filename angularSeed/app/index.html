@@ -15,6 +15,7 @@
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body ng-app="whiteBoardApp" ng-controller="whiteboardController">
+  <div
   <ul class="menu">
     <li><a href="#/view1">view1</a></li>
     <li><a href="#/view2">view2</a></li>
@@ -31,17 +32,18 @@
     <li><a href="#/tryToUndoMostRecentEdit" title="Undo an Edit"><div id="button2" label="view4"></div></a></li>
     <li><a href="#/tryToAddComment" title="Add a Comment"><div id="button3" label="view5"></div></a></li>
   </ul>
-
+    <div> {{ title }} </div>
     <canvas id="a" width="800" height="600" onmousedown="mouseCoords(event)"></canvas>
-    <script> function getChar(event) {
-              if(event.which == null) {
-                return String.fromCharCode(event.keyCode)
-              } else if(event.which !=0 && event.charCode!=0) {
-                return String.fromCharCode(event.which)
-              } else {
-                return null
-              }
-             }
+    <script> 
+              function getChar(event) {
+                if(event.which == null) {
+                  return String.fromCharCode(event.keyCode)
+                } else if(event.which !=0 && event.charCode!=0) {
+                  return String.fromCharCode(event.which)
+                } else {
+                  return null
+                }
+                }
 
              function mouseCoords(event) {
               document.getElementById("demo").innerHTML = "X= " + event.clientX + "<br>Y= " + event.clientY;
@@ -55,6 +57,7 @@
              context.fillText('getChar(keypress)', event.clientX, event.clientY);
              context.font='bold 25px cursive';
              context.strokeText('getChar(keypress)', event.clientX, event.clientY);
+
 
 
     </script>
