@@ -32,6 +32,33 @@
     <li><a href="#/tryToAddComment" title="Add a Comment"><div id="button3" label="view5"></div></a></li>
   </ul>
 
+    <canvas id="a" width="800" height="600" onmousedown="mouseCoords(event)"></canvas>
+    <script> function getChar(event) {
+              if(event.which == null) {
+                return String.fromCharCode(event.keyCode)
+              } else if(event.which !=0 && event.charCode!=0) {
+                return String.fromCharCode(event.which)
+              } else {
+                return null
+              }
+             }
+
+             function mouseCoords(event) {
+              document.getElementById("demo").innerHTML = "X= " + event.clientX + "<br>Y= " + event.clientY;
+             }
+              var c_canvas = document.getElementById("a");
+             var context = c_canvas.getContext("2d");
+
+             context.fillStyle='#00f';
+             context.font='bold 25px cursive';
+             context.textBaseline='top';
+             context.fillText('getChar(keypress)', event.clientX, event.clientY);
+             context.font='bold 25px cursive';
+             context.strokeText('getChar(keypress)', event.clientX, event.clientY);
+
+
+    </script>
+
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
@@ -39,6 +66,9 @@
   <div ng-view></div>
 
   <div>Angular seed app: v<span app-version></span></div>
+  <br><!--p onmousedown="mouseCoords(event)">Click here</p-->
+
+  <p id="demo"></p>
 
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>

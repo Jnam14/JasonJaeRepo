@@ -72,3 +72,7 @@ h1 {
   top: 25px;
   left: 25px;
 }
+
+#a {
+  border: solid;
+}
