@@ -29,6 +29,13 @@
   padding: 0;
 }
 
+.WhiteboardTitle {
+  font-family: Helvetica;
+  color: red;
+  font-size: 24pt;
+  position: absolute;
+}
+
 h1 {
   font-size: 50px;
   text-align: center;
@@ -73,6 +80,11 @@ h1 {
   left: 25px;
 }
 
+
 #a {
   border: solid;
 }
+
+
+
+

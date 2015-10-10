@@ -17,14 +17,12 @@
 <body ng-app="whiteBoardApp" ng-controller="whiteboardController">
   <div
   <ul class="menu">
-    <li><a href="#/view1">view1</a></li>
-    <li><a href="#/view2">view2</a></li>
   </ul>
 
   <a href="backToHomePage.html" title="Back to Home Page">
       <div id="rectangle"></div>
       </a>
-    <h1>Project 1</h1>
+    <h1>Whiteboard For CS Majors</h1>
   <ul class="menu">
     <li><a href="#/view1">view1</a></li>
     <li><a href="#/view2">view2</a></li>
@@ -32,8 +30,9 @@
     <li><a href="#/tryToUndoMostRecentEdit" title="Undo an Edit"><div id="button2" label="view4"></div></a></li>
     <li><a href="#/tryToAddComment" title="Add a Comment"><div id="button3" label="view5"></div></a></li>
   </ul>
-    <div> {{ title }} </div>
-    <canvas id="a" width="800" height="600" onmousedown="mouseCoords(event)"></canvas>
+    <div class="WhiteboardTitle"> Whiteboard App </div>
+    <canvas id="a" width="800" height="600" onmousedown="mouseCoords(event)">
+    </canvas>
     <script> 
               function getChar(event) {
                 if(event.which == null) {
@@ -48,8 +47,14 @@
              function mouseCoords(event) {
               document.getElementById("demo").innerHTML = "X= " + event.clientX + "<br>Y= " + event.clientY;
              }
-              var c_canvas = document.getElementById("a");
-             var context = c_canvas.getContext("2d");
+
+              function init () {
+                  var canvas = document.getElementById("a");
+                }
+              init()
+             var context = canvas.getContext("2d");
+             var tool;
+             var basicTool = "line";
 
              context.fillStyle='#00f';
              context.font='bold 25px cursive';
@@ -57,6 +62,20 @@
              context.fillText('getChar(keypress)', event.clientX, event.clientY);
              context.font='bold 25px cursive';
              context.strokeText('getChar(keypress)', event.clientX, event.clientY);
+             canvas.id     = 'imageTemp';
+             canvas.width  = 800;
+             canvas.height = 600; 
+
+             var tools = {};
+
+             var tool_select = document.getElementById('dtool');
+
+
+              //tool pencil
+
+              tools.pencil = function () {
+              var tool = self;
+              self.started = false;
 
 
 
